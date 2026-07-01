@@ -30,7 +30,7 @@ function AiAssistantPage() {
       <PageHeader
         title="AI Assistant"
         description="Powered features for prescription parsing, safety checks, inventory chat, and procurement."
-        icon={Sparkles}
+        
       />
       <Tabs defaultValue="ocr" className="w-full">
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
