@@ -1,7 +1,7 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import {
   LayoutDashboard, Package, Pill, ShoppingCart, Users, FileText, Receipt,
-  BarChart3, Bell, UserCog, Settings, LogOut, Cross,
+  BarChart3, Bell, UserCog, Settings, LogOut, Cross, Sparkles,
 } from "lucide-react";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
@@ -19,6 +19,7 @@ const mainNav = [
   { title: "Prescriptions", url: "/prescriptions", icon: FileText },
   { title: "Invoices", url: "/invoices", icon: Receipt },
   { title: "Reports", url: "/reports", icon: BarChart3 },
+  { title: "AI Assistant", url: "/ai-assistant", icon: Sparkles },
 ];
 
 const systemNav = [
