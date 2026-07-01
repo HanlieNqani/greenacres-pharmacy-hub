@@ -62,7 +62,7 @@ export const checkInteractions = createServerFn({ method: "POST" })
     const [{ data: customer }, { data: meds }] = await Promise.all([
       supabase
         .from("customers")
-        .select("full_name, age, allergies, chronic_conditions, current_medications")
+        .select("full_name, date_of_birth, allergies, chronic_conditions")
         .eq("id", data.customer_id)
         .maybeSingle(),
       supabase
@@ -72,13 +72,15 @@ export const checkInteractions = createServerFn({ method: "POST" })
     ]);
 
     if (!customer) throw new Error("Customer not found");
+    const age = customer.date_of_birth
+      ? Math.floor((Date.now() - new Date(customer.date_of_birth).getTime()) / (365.25 * 86400_000))
+      : null;
 
     const system = `You are a clinical pharmacist reviewing a prescription for safety. Analyze:
 1. Drug-drug interactions between the NEW medicines
-2. Interactions between the NEW medicines and the patient's CURRENT medications
-3. Contraindications with the patient's ALLERGIES
-4. Contraindications with the patient's CHRONIC CONDITIONS
-5. Age-related concerns
+2. Contraindications with the patient's ALLERGIES
+3. Contraindications with the patient's CHRONIC CONDITIONS
+4. Age-related concerns
 
 Return ONLY valid JSON:
 {
