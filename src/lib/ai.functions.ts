@@ -270,7 +270,7 @@ export const listPickerData = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     const [{ data: customers }, { data: medicines }] = await Promise.all([
-      context.supabase.from("customers").select("id, full_name, age, allergies, chronic_conditions").order("full_name").limit(500),
+      context.supabase.from("customers").select("id, full_name, allergies, chronic_conditions").order("full_name").limit(500),
       context.supabase.from("medicines").select("id, name, generic_name").order("name").limit(500),
     ]);
     return { customers: customers ?? [], medicines: medicines ?? [] };
