@@ -43,7 +43,7 @@ If the image is not a prescription, set confidence to "low" and medicines to [].
       ],
       response_format: { type: "json_object" },
     });
-    return parseJsonLoose(content);
+    return parseJsonLoose<Record<string, unknown>>(content);
   });
 
 // ============ 2. Drug interaction & allergy checker ============
@@ -109,7 +109,7 @@ ${(meds ?? []).map((m) => `- ${m.name}${m.generic_name ? ` (${m.generic_name})` 
       response_format: { type: "json_object" },
       temperature: 0.2,
     });
-    return parseJsonLoose(content);
+    return parseJsonLoose<Record<string, unknown>>(content);
   });
 
 // ============ 3. Inventory assistant (chat with data context) ============
@@ -262,7 +262,7 @@ Rules: recommend whole units only. Round order quantities up to nearest 10 for i
       response_format: { type: "json_object" },
       temperature: 0.2,
     });
-    return parseJsonLoose(content);
+    return parseJsonLoose<Record<string, unknown>>(content);
   });
 
 // ============ Helper: list customers & medicines for pickers ============
