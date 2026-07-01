@@ -94,10 +94,9 @@ Base your reasoning on standard clinical knowledge. If no issues found, return r
 
     const userMsg = `PATIENT:
 Name: ${customer.full_name}
-Age: ${customer.age ?? "unknown"}
+Age: ${age ?? "unknown"}
 Allergies: ${customer.allergies ?? "none recorded"}
 Chronic conditions: ${customer.chronic_conditions ?? "none recorded"}
-Current medications: ${customer.current_medications ?? "none recorded"}
 
 NEW MEDICINES TO DISPENSE:
 ${(meds ?? []).map((m) => `- ${m.name}${m.generic_name ? ` (${m.generic_name})` : ""}`).join("\n")}`;
